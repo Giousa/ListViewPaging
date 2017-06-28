@@ -81,7 +81,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     boolean isLastOne() {
-        return this.mCurrentPage == mSize/mItemCount;
+        int i = mDeviceNames.size() % mItemCount;
+        if(i == 0){
+            return this.mCurrentPage == mSize/mItemCount - 1;
+        }else {
+            return this.mCurrentPage == mSize/mItemCount;
+        }
     }
 
 
@@ -113,7 +118,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return (isLastOne()) ? (mDeviceNames.size() % mItemCount) : mItemCount;
+            int i = mDeviceNames.size() % mItemCount;
+            if(i == 0){
+                return mItemCount;
+            }else {
+                return (isLastOne()) ? i : mItemCount;
+            }
         }
 
         @Override
